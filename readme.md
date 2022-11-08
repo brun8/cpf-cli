@@ -7,26 +7,34 @@ no terminal é mais rapido
 se já tiver go instalado
 
 ```bash
+go build
+```
+
+ou
+
+```bash
 go install
 ```
 
+## uso
+
 pra gerar um cpf
-```golang
+```bash
 ./cpf 
 ```
 
 pra gerar vários 
-```golang
+```bash
 ./cpf -n 10
 ```
 
 pra gerar um com pontuação 
-```golang
+```bash
 ./cpf -p
 ```
 
 pra gerar vários com pontuação 
-```golang
+```bash
 ./cpf -p -n 10
 ```
 
