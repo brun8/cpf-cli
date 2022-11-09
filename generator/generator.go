@@ -7,18 +7,29 @@ import (
 	"time"
 )
 
-func GenerateCpf(punctuated bool) string {
+func GenerateCpf(punctuated bool, region int) string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	cpf := ""
 	sum := 0
 	sum2 := 0
 
-	for i := 0; i < 9; i++ {
+	for i := 0; i < 8; i++ {
 		num := r.Int() % 10
 		cpf += strconv.Itoa(num)
 
 		sum += (10 - i) * num
 	}
+
+  var num int
+  if region == -1 {
+    num = r.Int() % 10
+  } else {
+    num = region
+  }
+
+  cpf += strconv.Itoa(num)
+	sum += 2 * num
+
 	cpf += strconv.Itoa(generateDigit(sum))
 
 	// 2 loops pro primeiro nao ficar ilegivel
