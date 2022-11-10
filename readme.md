@@ -38,6 +38,11 @@ pra gerar vários com pontuação
 ./cpf -p -n 10
 ```
 
+pra gerar um cpf de uma região específica pontuação 
+```bash
+./cpf -r 1
+```
+
 ## disclaimer
 
 * a programação incentiva o uso da língua inglesa
