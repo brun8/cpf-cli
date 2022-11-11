@@ -31,21 +31,21 @@ func TestGenerateWithRegion(t *testing.T) {
 
 func TestCpfIsValid(t *testing.T) {
 	unpunctuated := GenerateCpf(false, -1)
-  punctuated := GenerateCpf(true, -1)
+	punctuated := GenerateCpf(true, -1)
 
 	validateCpf(t, unpunctuated)
 	validateCpf(t, punctuated)
 }
 
 func validateCpf(t *testing.T, cpf string) {
-  cpf = normalizeCpf(cpf)
+	cpf = normalizeCpf(cpf)
 
 	var sum1, sum2 int
 	for i := 0; i < 10; i++ {
 		num, err := strconv.Atoi(string(cpf[i]))
 		if err != nil {
-      t.Error("invalid characters on cpf")
-      return
+			t.Error("invalid characters on cpf")
+			return
 		}
 
 		// pula o ultimo digito pro calculo do primeiro digito verificador
@@ -63,7 +63,7 @@ func validateCpf(t *testing.T, cpf string) {
 	v2 := generateDigit(sum2)
 
 	if strconv.Itoa(v1) != string(cpf[9]) || strconv.Itoa(v2) != string(cpf[10]) {
-    t.Error("invalid cpf")
+		t.Error("invalid cpf")
 	}
 }
 

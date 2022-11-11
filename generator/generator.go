@@ -20,14 +20,14 @@ func GenerateCpf(punctuated bool, region int) string {
 		sum += (10 - i) * num
 	}
 
-  var num int
-  if region == -1 {
-    num = r.Int() % 10
-  } else {
-    num = region
-  }
+	var num int
+	if region == -1 {
+		num = r.Int() % 10
+	} else {
+		num = region
+	}
 
-  cpf += strconv.Itoa(num)
+	cpf += strconv.Itoa(num)
 	sum += 2 * num
 
 	cpf += strconv.Itoa(generateDigit(sum))
@@ -40,9 +40,9 @@ func GenerateCpf(punctuated bool, region int) string {
 	}
 	cpf += strconv.Itoa(generateDigit(sum2))
 
-  if punctuated {
-    return fmt.Sprintf("%s.%s.%s-%s", cpf[0:3], cpf[3:6], cpf[6:9], cpf[9:])
-  }
+	if punctuated {
+		return fmt.Sprintf("%s.%s.%s-%s", cpf[0:3], cpf[3:6], cpf[6:9], cpf[9:])
+	}
 	return cpf
 }
 

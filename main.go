@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-  opts := parseFlags()
+	opts := parseFlags()
 
 	if opts.region < -1 || opts.region > 9 {
 		fmt.Println("região inválida")
@@ -21,8 +21,8 @@ func main() {
 }
 
 type ProgramFlags struct {
-  num, region int
-  punctuated bool
+	num, region int
+	punctuated  bool
 }
 
 func parseFlags() ProgramFlags {
@@ -44,5 +44,5 @@ func parseFlags() ProgramFlags {
 	punctuated := flag.Bool("p", false, "gerar dados com pontuação")
 	flag.Parse()
 
-  return ProgramFlags{*num, *region, *punctuated}
+	return ProgramFlags{*num, *region, *punctuated}
 }
