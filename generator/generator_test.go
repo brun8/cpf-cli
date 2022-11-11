@@ -59,12 +59,21 @@ func validateCpf(t *testing.T, cpf string) {
 		}
 	}
 
-	v1 := generateDigit(sum1)
-	v2 := generateDigit(sum2)
+	v1 := getDigit(sum1)
+	v2 := getDigit(sum2)
 
 	if strconv.Itoa(v1) != string(cpf[9]) || strconv.Itoa(v2) != string(cpf[10]) {
 		t.Error("invalid cpf")
 	}
+}
+
+func getDigit(sum int) int {
+  rest := sum % 11
+
+  if rest < 2 {
+    return 0
+  }
+  return 11 - rest
 }
 
 func normalizeCpf(cpf string) string {
