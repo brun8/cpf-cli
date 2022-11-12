@@ -68,12 +68,12 @@ func validateCpf(t *testing.T, cpf string) {
 }
 
 func getDigit(sum int) int {
-  rest := sum % 11
+	rest := sum % 11
 
-  if rest < 2 {
-    return 0
-  }
-  return 11 - rest
+	if rest < 2 {
+		return 0
+	}
+	return 11 - rest
 }
 
 func normalizeCpf(cpf string) string {

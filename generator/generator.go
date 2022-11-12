@@ -24,10 +24,10 @@ func GenerateCpf(punctuated bool, region int) string {
 	}
 	cpf += strconv.Itoa(num)
 
-  // primeiro digito de verificação
-  cpf += generateDigit(cpf[:9])
-  // segundo digito de verificação
-  cpf += generateDigit(cpf[1:10])
+	// primeiro digito de verificação
+	cpf += generateDigit(cpf[:9])
+	// segundo digito de verificação
+	cpf += generateDigit(cpf[1:10])
 
 	if punctuated {
 		return fmt.Sprintf("%s.%s.%s-%s", cpf[0:3], cpf[3:6], cpf[6:9], cpf[9:])
@@ -37,18 +37,16 @@ func GenerateCpf(punctuated bool, region int) string {
 }
 
 func generateDigit(digits string) string {
-  var sum int
-  for i := 0; i < 9; i++ {
-    num, _ := strconv.Atoi(string(digits[i]))
-    //fmt.Printf("%d * %d\n", 10-i, num)
+	var sum int
+	for i := 0; i < 9; i++ {
+		num, _ := strconv.Atoi(string(digits[i]))
+		sum += (10 - i) * num
+	}
 
-    sum += (10-i) * num
-  }
+	rest := sum % 11
+	if rest < 2 {
+		return "0"
+	}
 
-  rest := sum % 11
-  if rest < 2 {
-    return "0"
-  }
-
-  return strconv.Itoa(11-rest)
+	return strconv.Itoa(11 - rest)
 }
