@@ -16,9 +16,7 @@ func main() {
 	}
 
 	for i := 0; i < opts.num; i++ {
-		go func() {
-			fmt.Println(generator.GenerateCpf(opts.punctuated, opts.region))
-		}()
+		fmt.Println(generator.GenerateCpf(opts.punctuated, opts.region))
 	}
 }
 
