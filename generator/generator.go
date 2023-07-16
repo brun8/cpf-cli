@@ -9,11 +9,11 @@ import (
 
 func GenerateCpf(punctuated bool, region int) string {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	nums := make([]int, 0)
+	nums := make([]int, 0, 0)
 
 	for i := 0; i < 8; i++ {
 		num := r.Int() % 10
-		nums[i] = num
+    nums = append(nums, num)
 	}
 
 	var num int
@@ -22,13 +22,12 @@ func GenerateCpf(punctuated bool, region int) string {
 	} else {
 		num = region
 	}
-	nums[9] = num
-	//cpf += strconv.Itoa(num)
+	nums = append(nums, num) 
 
 	// primeiro digito de verificação
-	generateDigit(nums[:9])
+	nums = append(nums, generateDigit(nums[:9]))
 	// segundo digito de verificação
-	generateDigit(nums[1:10])
+  nums = append(nums, generateDigit(nums[1:10]))
 
   cpf := convertToString(nums)
 
@@ -50,7 +49,7 @@ func convertToString(nums []int) string {
 
 }
 
-func generateDigit(digits []int) string {
+func generateDigit(digits []int) int {
 	var sum int
 	for i := 0; i < 9; i++ {
 		num := digits[i]
@@ -59,8 +58,8 @@ func generateDigit(digits []int) string {
 
 	rest := sum % 11
 	if rest < 2 {
-		return "0"
+		return 0
 	}
 
-	return strconv.Itoa(11 - rest)
+	return 11 - rest
 }
